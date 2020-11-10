@@ -8,6 +8,20 @@ variables:
   buildConfiguration: 'Release'
  
 steps:
+- task: oc-setup@2
+  inputs:
+    connectionType: 'OpenShift Connection Service'
+    openshiftService: 'ocp45'
+    version: '4.4'
+
+- task: oc-cmd@2
+  inputs:
+    connectionType: 'OpenShift Connection Service'
+    openshiftService: 'ocp45'
+    version: '4.4'
+    cmd: 'oc whoami'
+    uselocalOc: true
+
 - task: DotNetCoreCLI@2
   inputs:
     command: 'restore'
